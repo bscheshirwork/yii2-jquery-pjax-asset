@@ -1,0 +1,26 @@
+{
+  "name": "bscheshirwork/yii2-jquery-pjax-asset",
+  "description": "Asset for the origin https://github.com/defunkt/jquery-pjax instead of https://github.com/yiisoft/jquery-pjax",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "asset",
+    "pjax"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "BSCheshir",
+      "email": "bscheshir.work@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": ">=2.0.15",
+    "npm-asset/jquery-pjax": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "bscheshirwork\\y2jpa\\": "src"
+    }
+  }
+}
