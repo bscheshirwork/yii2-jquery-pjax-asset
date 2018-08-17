@@ -111,3 +111,33 @@ add `bscheshirwork\y2jpa\PjaxAsset::register($this);` to `run()` method of your 
 use your widget `id` as tag for build `$('#id').pjax('#id a', '#id', {fragment: '#id'})`expression
 
 on server side we can croup content use `ob_start()`/`ob_end_clean()` mechanism in `widget::begin()`/`widget::end()`
+
+### Tips
+
+For debug reason we can log a global events with `fragment`
+The 90% reasons of page reload is a missing `fragment` selector in answer body
+ 
+```js
+$(document).bind('ajaxStart', function(){
+    console.log('ajaxStart');
+}).bind('ajaxSend', function(event, jqXHR, s){
+    console.log('ajaxSend' + ' ' + s.fragment);
+}).bind('ajaxSuccess', function(event, jqXHR, s, success){
+    console.log('ajaxSuccess' + ' ' + s.fragment);
+}).bind('ajaxError', function(event, jqXHR, s, error){
+    console.log('ajaxError' + ' ' + s.fragment);
+}).bind('ajaxComplete', function(event, jqXHR, s){
+    console.log('ajaxComplete' + ' ' + s.fragment);
+}).bind('ajaxStop', function(){
+    console.log('ajaxStop');
+});
+
+$(document).on('pjax:start', function (event, xhr, options) {
+    console.log('pjax:start' + ' ' + options.fragment);
+}).on('pjax:complete', function (event, xhr, textStatus, options) {
+    console.log('pjax:complete' + ' ' + options.fragment);
+}).on('pjax:end', function (event, xhr, options) {
+    console.log('pjax:end' + ' ' + xhr.status + ' ' + options.fragment);
+});
+
+```
